@@ -11,7 +11,7 @@ class SearchLocation extends UseCase<List<Location>, String> {
   SearchLocation({@required this.locationRepository}) : assert(locationRepository != null);
 
   @override
-  Future<Result<List<Location>, Failure>> call(String query) {
+  Future<Result<List<Location>, Failure>> call([String query]) {
     return locationRepository.searchLocation(query);
   }
 }

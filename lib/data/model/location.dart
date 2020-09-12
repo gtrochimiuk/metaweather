@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Location extends Equatable {
-  final String id;
+  final int id;
   final String name;
 
   Location.fromJson(Map<String, dynamic> json)

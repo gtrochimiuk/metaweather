@@ -9,5 +9,5 @@ class SearchLocationRequest extends Request<List<Location>> {
         );
 
   @override
-  List<Location> createResponse(dynamic json) => json.map((location) => Location.fromJson(location)).toList();
+  List<Location> createResponse(dynamic json) => json.map<Location>((location) => Location.fromJson(location)).toList();
 }

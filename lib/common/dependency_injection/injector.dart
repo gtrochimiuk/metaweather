@@ -3,19 +3,24 @@ import 'package:kiwi/kiwi.dart';
 import 'package:metaweather/common/environment/environment.dart';
 import 'package:metaweather/common/network/dio_network_service.dart';
 import 'package:metaweather/common/network/network_service.dart';
-import 'package:metaweather/common/texts/app_texts.dart';
-import 'package:metaweather/common/texts/unlocalized_app_texts.dart';
 import 'package:metaweather/data/repository/forecast_repository.dart';
 import 'package:metaweather/data/repository/impl/forecast_repository_impl.dart';
 import 'package:metaweather/data/repository/impl/location_repository_impl.dart';
+import 'package:metaweather/data/repository/impl/settings_repository_impl.dart';
 import 'package:metaweather/data/repository/location_repository.dart';
+import 'package:metaweather/data/repository/settings_repository.dart';
 import 'package:metaweather/domain/use_case/load_forecast.dart';
+import 'package:metaweather/domain/use_case/load_settings.dart';
+import 'package:metaweather/domain/use_case/save_settings.dart';
 import 'package:metaweather/domain/use_case/search_location.dart';
-import 'package:metaweather/presentation/forecast/bloc/forecast_bloc.dart';
-import 'package:metaweather/presentation/location_search/bloc/location_search_bloc.dart';
+import 'package:metaweather/presentation/feature/forecast/bloc/forecast_bloc.dart';
+import 'package:metaweather/presentation/feature/location_search/bloc/location_search_bloc.dart';
+import 'package:metaweather/presentation/feature/settings/bloc/settings_bloc.dart';
+import 'package:metaweather/presentation/texts/app_texts.dart';
+import 'package:metaweather/presentation/texts/unlocalized_app_texts.dart';
 
 abstract class Injector {
-  static KiwiContainer _container;
+  static KiwiContainer _container = KiwiContainer();
 
   static T Function<T>([String name]) get resolve => _container.resolve;
 
@@ -31,6 +36,16 @@ abstract class Injector {
         forecastRepository: c.resolve(),
       ),
     );
+    _container.registerSingleton(
+      (c) => LoadSettings(
+        settingsRepository: c.resolve(),
+      ),
+    );
+    _container.registerSingleton(
+      (c) => SaveSettings(
+        settingsRepository: c.resolve(),
+      ),
+    );
 
     // Repositories
     _container.registerSingleton<ForecastRepository>(
@@ -42,6 +57,9 @@ abstract class Injector {
       (c) => LocationRepositoryImpl(
         networkService: c.resolve(),
       ),
+    );
+    _container.registerSingleton<SettingsRepository>(
+      (c) => SettingsRepositoryImpl(),
     );
 
     // Network
@@ -62,7 +80,7 @@ abstract class Injector {
     );
 
     // Bloc
-    _container.registerSingleton(
+    _container.registerFactory(
       (c) => LocationSearchBloc(
         searchLocation: c.resolve(),
       ),
@@ -71,6 +89,9 @@ abstract class Injector {
       (c) => ForecastBloc(
         loadForecast: c.resolve(),
       ),
+    );
+    _container.registerSingleton(
+      (c) => SettingsBloc(),
     );
   }
 }

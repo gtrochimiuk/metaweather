@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:metaweather/common/texts/app_texts.dart';
+import 'package:metaweather/presentation/texts/app_texts.dart';
 
 abstract class Failure extends Equatable {
   String toLocalizedMessage();

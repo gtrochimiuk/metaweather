@@ -6,4 +6,10 @@ abstract class AppTexts {
   String noInternetConnection();
 
   String unexpectedError();
+
+  String location();
+
+  String findYourLocation();
+
+  String noLocationsFound();
 }

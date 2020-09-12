@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 abstract class ForecastEvent extends Equatable {}
 
 class LoadForecastEvent extends ForecastEvent {
-  final String locationId;
+  final int locationId;
 
   LoadForecastEvent({@required this.locationId}) : assert(locationId != null);
 

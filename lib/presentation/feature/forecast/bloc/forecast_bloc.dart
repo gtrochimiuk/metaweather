@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:metaweather/common/failure/failure.dart';
 import 'package:metaweather/data/model/forecast.dart';
 import 'package:metaweather/domain/use_case/load_forecast.dart';
-import 'package:metaweather/presentation/forecast/bloc/forecast_event.dart';
-import 'package:metaweather/presentation/forecast/bloc/forecast_state.dart';
+import 'package:metaweather/presentation/feature/forecast/bloc/forecast_event.dart';
+import 'package:metaweather/presentation/feature/forecast/bloc/forecast_state.dart';
 
 class ForecastBloc extends Bloc<ForecastEvent, ForecastState> {
   final LoadForecast loadForecast;
@@ -19,8 +19,9 @@ class ForecastBloc extends Bloc<ForecastEvent, ForecastState> {
   Stream<ForecastState> mapEventToState(ForecastEvent event) async* {
     if (event is LoadForecastEvent) {
       yield* _mapLoadForecast(event);
+    } else {
+      throw UnsupportedError('Event $event is not supported');
     }
-    throw UnsupportedError('Event $event is not supported');
   }
 
   Stream<ForecastState> _mapLoadForecast(LoadForecastEvent event) async* {

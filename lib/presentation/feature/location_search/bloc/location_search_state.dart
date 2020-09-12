@@ -3,12 +3,14 @@ import 'package:flutter/foundation.dart';
 import 'package:metaweather/common/failure/failure.dart';
 import 'package:metaweather/data/model/location.dart';
 
-abstract class LocationSearchState extends Equatable {}
-
-class LoadingLocationSearchState extends LocationSearchState {
+abstract class LocationSearchState extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class UninitializedLocationSearchState extends LocationSearchState {}
+
+class LoadingLocationSearchState extends LocationSearchState {}
 
 class LoadedLocationSearchState extends LocationSearchState {
   final List<Location> locations;

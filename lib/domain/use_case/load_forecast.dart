@@ -5,13 +5,13 @@ import 'package:metaweather/common/use_case/use_case.dart';
 import 'package:metaweather/data/model/forecast.dart';
 import 'package:metaweather/data/repository/forecast_repository.dart';
 
-class LoadForecast extends UseCase<Forecast, String> {
+class LoadForecast extends UseCase<Forecast, int> {
   final ForecastRepository forecastRepository;
 
   LoadForecast({@required this.forecastRepository}) : assert(forecastRepository != null);
 
   @override
-  Future<Result<Forecast, Failure>> call(String locationId) {
+  Future<Result<Forecast, Failure>> call([int locationId]) {
     return forecastRepository.loadForecast(locationId);
   }
 }
