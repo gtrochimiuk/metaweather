@@ -6,11 +6,13 @@ import 'package:metaweather/common/network/network_service.dart';
 import 'package:metaweather/common/texts/app_texts.dart';
 import 'package:metaweather/common/texts/unlocalized_app_texts.dart';
 import 'package:metaweather/data/repository/forecast_repository.dart';
-import 'package:metaweather/data/repository/impl/forecast_repository_imlp.dart';
+import 'package:metaweather/data/repository/impl/forecast_repository_impl.dart';
 import 'package:metaweather/data/repository/impl/location_repository_impl.dart';
 import 'package:metaweather/data/repository/location_repository.dart';
 import 'package:metaweather/domain/use_case/load_forecast.dart';
 import 'package:metaweather/domain/use_case/search_location.dart';
+import 'package:metaweather/presentation/forecast/bloc/forecast_bloc.dart';
+import 'package:metaweather/presentation/location_search/bloc/location_search_bloc.dart';
 
 abstract class Injector {
   static KiwiContainer _container;
@@ -57,6 +59,18 @@ abstract class Injector {
     // Texts
     _container.registerSingleton<AppTexts>(
       (c) => UnlocalizedAppTexts(),
+    );
+
+    // Bloc
+    _container.registerSingleton(
+      (c) => LocationSearchBloc(
+        searchLocation: c.resolve(),
+      ),
+    );
+    _container.registerFactory(
+      (c) => ForecastBloc(
+        loadForecast: c.resolve(),
+      ),
     );
   }
 }
