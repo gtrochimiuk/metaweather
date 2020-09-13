@@ -12,7 +12,7 @@ abstract class PageBody extends StatelessWidget {
     }
   }
 
-  Widget buildLandscape(BuildContext context);
-
   Widget buildPortrait(BuildContext context);
+
+  Widget buildLandscape(BuildContext context);
 }

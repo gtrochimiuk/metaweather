@@ -1,9 +1,13 @@
 import 'package:metaweather/common/network/request.dart';
 import 'package:metaweather/data/model/forecast.dart';
 
-class ForecastRequest extends Request<Forecast> {
-  ForecastRequest(int locationId) : super(path: 'location/$locationId');
+class ForecastRequest extends Request<List<Forecast>> {
+  ForecastRequest(int locationId) : super(path: 'api/location/$locationId');
 
   @override
-  Forecast createResponse(dynamic json) => Forecast.fromJson(json);
+  List<Forecast> createResponse(dynamic json) => json['consolidated_weather']
+      .map<Forecast>(
+        (forecast) => Forecast.fromJson(forecast),
+      )
+      .toList();
 }

@@ -19,6 +19,9 @@ dependencies:
   mockito: ^4.1.2
   flutter_bloc: ^6.0.5
   shared_preferences: ^0.5.10
+  flutter_svg: ^0.19.0
+  url_launcher: ^5.5.3
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:

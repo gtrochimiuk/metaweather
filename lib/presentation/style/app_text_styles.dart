@@ -5,6 +5,13 @@ import 'color/app_colors.dart';
 abstract class AppTextStyles {
   static const fontFamily = 'Lato';
 
+  static TextStyle mainInfo(BuildContext context, {Color color}) => TextStyle(
+        color: color ?? AppColors.primaryContent(context),
+        fontSize: 68,
+        fontWeight: FontWeight.bold,
+        fontFamily: fontFamily,
+      );
+
   static TextStyle headline(BuildContext context, {Color color}) => TextStyle(
         color: color ?? AppColors.primaryContent(context),
         fontSize: 24,

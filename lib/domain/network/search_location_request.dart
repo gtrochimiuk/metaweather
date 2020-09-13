@@ -4,10 +4,14 @@ import 'package:metaweather/data/model/location.dart';
 class SearchLocationRequest extends Request<List<Location>> {
   SearchLocationRequest(String query)
       : super(
-          path: 'location/search',
+          path: 'api/location/search',
           queryParameters: {'query': query},
         );
 
   @override
-  List<Location> createResponse(dynamic json) => json.map<Location>((location) => Location.fromJson(location)).toList();
+  List<Location> createResponse(dynamic json) => json
+      .map<Location>(
+        (location) => Location.fromJson(location),
+      )
+      .toList();
 }

@@ -12,7 +12,7 @@ class ForecastRepositoryImpl extends ForecastRepository {
   ForecastRepositoryImpl({@required this.networkService}) : assert(networkService != null);
 
   @override
-  Future<Result<Forecast, Failure>> loadForecast(int locationId) {
+  Future<Result<List<Forecast>, Failure>> loadForecast(int locationId) {
     final request = ForecastRequest(locationId);
     return networkService.make(request);
   }

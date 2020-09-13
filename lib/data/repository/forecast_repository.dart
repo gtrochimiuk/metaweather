@@ -3,5 +3,5 @@ import 'package:metaweather/common/result/result.dart';
 import 'package:metaweather/data/model/forecast.dart';
 
 abstract class ForecastRepository {
-  Future<Result<Forecast, Failure>> loadForecast(int locationId);
+  Future<Result<List<Forecast>, Failure>> loadForecast(int locationId);
 }

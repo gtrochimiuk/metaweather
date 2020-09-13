@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:metaweather/common/extensions/double_extensions.dart';
+import 'package:metaweather/presentation/texts/app_texts.dart';
 
 class Wind extends Equatable {
   final double speed;
@@ -10,4 +12,6 @@ class Wind extends Equatable {
 
   @override
   List<Object> get props => [speed, direction];
+
+  String formatSpeed() => AppTexts.current.speed(speed.roundAsFixed(1));
 }

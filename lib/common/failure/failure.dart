@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:metaweather/presentation/texts/app_texts.dart';
 
 abstract class Failure extends Equatable {
-  String toLocalizedMessage();
+  String getMessage();
 
   @override
   List<Object> get props => [];
@@ -10,10 +10,10 @@ abstract class Failure extends Equatable {
 
 class ConnectionFailure extends Failure {
   @override
-  String toLocalizedMessage() => AppTexts.current.noInternetConnection();
+  String getMessage() => AppTexts.current.noInternetConnection();
 }
 
 class UnexpectedFailure extends Failure {
   @override
-  String toLocalizedMessage() => AppTexts.current.unexpectedError();
+  String getMessage() => AppTexts.current.unexpectedError();
 }

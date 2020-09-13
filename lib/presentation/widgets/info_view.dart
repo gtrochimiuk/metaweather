@@ -4,10 +4,10 @@ import 'package:metaweather/presentation/style/app_margin.dart';
 import 'package:metaweather/presentation/style/app_text_styles.dart';
 import 'package:metaweather/presentation/style/color/app_colors.dart';
 
-class EmptyView extends StatelessWidget {
+class InfoView extends StatelessWidget {
   final String information;
 
-  const EmptyView({Key key, @required this.information})
+  const InfoView({Key key, @required this.information})
       : assert(information != null),
         super(key: key);
 

@@ -19,6 +19,8 @@ class ForecastBloc extends Bloc<ForecastEvent, ForecastState> {
   Stream<ForecastState> mapEventToState(ForecastEvent event) async* {
     if (event is LoadForecastEvent) {
       yield* _mapLoadForecast(event);
+    } else if (event is SelectForecastEvent) {
+      yield* _mapSelectForecast(event);
     } else {
       throw UnsupportedError('Event $event is not supported');
     }
@@ -28,12 +30,24 @@ class ForecastBloc extends Bloc<ForecastEvent, ForecastState> {
     yield LoadingForecastState();
     final result = await loadForecast(event.locationId);
     yield* result.fold(
-      onSuccess: (Forecast forecast) async* {
-        yield LoadedForecastState(forecast: forecast);
+      onSuccess: (List<Forecast> forecasts) async* {
+        yield LoadedForecastState(
+          forecasts: forecasts,
+          selectedForecast: forecasts.first,
+        );
       },
       onFailure: (Failure failure) async* {
         yield FailureForecastState(failure: failure);
       },
     );
+  }
+
+  Stream<ForecastState> _mapSelectForecast(SelectForecastEvent event) async* {
+    if (state is LoadedForecastState) {
+      yield LoadedForecastState(
+        forecasts: (state as LoadedForecastState).forecasts,
+        selectedForecast: event.forecast,
+      );
+    }
   }
 }

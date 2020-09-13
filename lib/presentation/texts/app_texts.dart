@@ -12,4 +12,30 @@ abstract class AppTexts {
   String findYourLocation();
 
   String noLocationsFound();
+
+  String tapToRetry();
+
+  String temperature(int value);
+
+  String speed(double value);
+
+  String attributionInfo();
+
+  String today();
+
+  String tomorrow();
+
+  String humidity();
+
+  String airPressure();
+
+  String visibility();
+
+  String wind();
+
+  String airPressureHpa(double airPressure);
+
+  String humidityPercent(int humidity);
+
+  String visibilityMiles(double visibility);
 }

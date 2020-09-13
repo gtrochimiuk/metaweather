@@ -11,12 +11,17 @@ class LoadingForecastState extends ForecastState {
 }
 
 class LoadedForecastState extends ForecastState {
-  final Forecast forecast;
+  final List<Forecast> forecasts;
+  final Forecast selectedForecast;
 
-  LoadedForecastState({@required this.forecast}) : assert(forecast != null);
+  LoadedForecastState({
+    @required this.forecasts,
+    @required this.selectedForecast,
+  })  : assert(forecasts != null),
+        assert(selectedForecast != null);
 
   @override
-  List<Object> get props => [forecast];
+  List<Object> get props => [forecasts, selectedForecast];
 }
 
 class FailureForecastState extends ForecastState {
