@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:metaweather/presentation/widgets/loading_indicator.dart';
 
 class WeatherImage extends StatelessWidget {
   final String imageUrl;
@@ -22,6 +23,7 @@ class WeatherImage extends StatelessWidget {
           width: maxSize / 1.5,
           height: maxSize / 1.5,
           alignment: Alignment.centerLeft,
+          placeholderBuilder: (_) => const LoadingIndicator(),
         );
       },
     );

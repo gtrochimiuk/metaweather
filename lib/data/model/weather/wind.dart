@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:metaweather/common/extensions/double_extensions.dart';
+import 'package:metaweather/data/model/settings/length_unit.dart';
 import 'package:metaweather/presentation/texts/app_texts.dart';
 
 class Wind extends Equatable {
@@ -13,5 +14,13 @@ class Wind extends Equatable {
   @override
   List<Object> get props => [speed, direction];
 
-  String formatSpeed() => AppTexts.current.speed(speed.roundAsFixed(1));
+  String formatSpeed(LengthUnit unit) {
+    switch (unit) {
+      case LengthUnit.kilometer:
+        return AppTexts.current.speedKmh(speed.milesToKilometers().roundAsFixed(1));
+      case LengthUnit.mile:
+        return AppTexts.current.speedMph(speed.roundAsFixed(1));
+    }
+    throw UnsupportedError('Unit $unit is not supported');
+  }
 }

@@ -4,7 +4,7 @@ import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:metaweather/common/extensions/date_time_extensions.dart';
 import 'package:metaweather/common/utils/device.dart';
-import 'package:metaweather/data/model/forecast.dart';
+import 'package:metaweather/data/model/weather/forecast.dart';
 import 'package:metaweather/presentation/feature/forecast/widgets/forecast_app_bar.dart';
 import 'package:metaweather/presentation/feature/forecast/widgets/forecast_detail/forecast_detail.dart';
 import 'package:metaweather/presentation/feature/forecast/widgets/forecast_list/horizontal_forecast_list.dart';
@@ -31,6 +31,8 @@ class ForecastPageBody extends OrientationBasedPageBody with RefreshIndicatorMix
         assert(refreshForecast != null),
         super(key: key);
 
+  double _screenHeight(BuildContext context) => MediaQuery.of(context).size.height - ForecastAppBar.height;
+
   Future<void> _onRefresh() {
     final Completer<void> completer = Completer();
     refreshForecast(completer: completer);
@@ -40,17 +42,20 @@ class ForecastPageBody extends OrientationBasedPageBody with RefreshIndicatorMix
   @override
   Widget buildPortrait(BuildContext context) {
     return CustomRefreshIndicator(
-      offsetToArmed: 50,
+      offsetToArmed: 70,
       builder: _buildRefreshIndicator,
       onRefresh: _onRefresh,
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _buildForecastDetail(context),
-            _buildForecastHorizontalList(context),
-          ],
+        child: Container(
+          height: _screenHeight(context),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildForecastDetail(context),
+              _buildForecastHorizontalList(context),
+            ],
+          ),
         ),
       ),
     );
@@ -84,9 +89,7 @@ class ForecastPageBody extends OrientationBasedPageBody with RefreshIndicatorMix
   }
 
   Widget _buildForecastDetail(BuildContext context) {
-    return Flexible(
-      child: ForecastDetail(forecast: selectedForecast),
-    );
+    return ForecastDetail(forecast: selectedForecast);
   }
 
   Widget _buildScrollableForecastDetail(BuildContext context) {
@@ -96,7 +99,10 @@ class ForecastPageBody extends OrientationBasedPageBody with RefreshIndicatorMix
         builder: _buildRefreshIndicator,
         onRefresh: _onRefresh,
         child: SingleChildScrollView(
-          child: ForecastDetail(forecast: selectedForecast),
+          child: Container(
+            height: _screenHeight(context),
+            child: ForecastDetail(forecast: selectedForecast),
+          ),
         ),
       ),
     );

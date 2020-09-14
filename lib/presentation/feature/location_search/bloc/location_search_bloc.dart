@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:metaweather/common/failure/failure.dart';
-import 'package:metaweather/data/model/location.dart';
+import 'package:metaweather/data/model/location/location.dart';
 import 'package:metaweather/domain/use_case/search_location.dart';
 import 'package:metaweather/presentation/feature/location_search/bloc/location_search_event.dart';
 import 'package:metaweather/presentation/feature/location_search/bloc/location_search_state.dart';

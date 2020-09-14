@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:metaweather/data/model/forecast.dart';
+import 'package:metaweather/data/model/weather/forecast.dart';
 
 abstract class ForecastEvent extends Equatable {}
 

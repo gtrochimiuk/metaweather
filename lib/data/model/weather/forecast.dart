@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:metaweather/data/model/location.dart';
-import 'package:metaweather/data/model/weather_state.dart';
+import 'package:metaweather/data/model/location/location.dart';
+import 'package:metaweather/data/model/weather/weather_state.dart';
 
 class Forecast extends Equatable {
   final Location location;

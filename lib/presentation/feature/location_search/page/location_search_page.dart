@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:metaweather/common/dependency_injection/injector.dart';
 import 'package:metaweather/common/failure/failure.dart';
 import 'package:metaweather/common/utils/debouncer.dart';
-import 'package:metaweather/data/model/location.dart';
+import 'package:metaweather/data/model/location/location.dart';
 import 'package:metaweather/presentation/feature/forecast/page/forecast_page.dart';
 import 'package:metaweather/presentation/feature/location_search/bloc/location_search_bloc.dart';
 import 'package:metaweather/presentation/feature/location_search/bloc/location_search_event.dart';

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:metaweather/data/model/forecast.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:metaweather/common/dependency_injection/injector.dart';
+import 'package:metaweather/data/model/weather/forecast.dart';
 import 'package:metaweather/presentation/feature/forecast/widgets/forecast_detail/text_weather_info_item.dart';
 import 'package:metaweather/presentation/feature/forecast/widgets/forecast_detail/wind_weather_info_item.dart';
+import 'package:metaweather/presentation/feature/settings/bloc/settings_bloc.dart';
+import 'package:metaweather/presentation/feature/settings/bloc/settings_state.dart';
 import 'package:metaweather/presentation/texts/app_texts.dart';
 
 class ForecastAdditionalInfo extends StatelessWidget {
@@ -68,9 +72,14 @@ class ForecastAdditionalInfo extends StatelessWidget {
   }
 
   Widget _buildVisibilityInfoItem(BuildContext context) {
-    return TextWeatherInfoItem(
-      label: AppTexts.current.visibility(),
-      value: forecast.weatherState.formatVisibility(),
+    return BlocBuilder<SettingsBloc, SettingsState>(
+      cubit: Injector.resolve(),
+      builder: (context, state) {
+        return TextWeatherInfoItem(
+          label: AppTexts.current.visibility(),
+          value: forecast.weatherState.formatVisibility(state.settings.lengthUnit),
+        );
+      },
     );
   }
 }

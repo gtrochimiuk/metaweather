@@ -1,5 +1,5 @@
 import 'package:metaweather/common/network/request.dart';
-import 'package:metaweather/data/model/forecast.dart';
+import 'package:metaweather/data/model/weather/forecast.dart';
 
 class ForecastRequest extends Request<List<Forecast>> {
   ForecastRequest(int locationId) : super(path: 'api/location/$locationId');

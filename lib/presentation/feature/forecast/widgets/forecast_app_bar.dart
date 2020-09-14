@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:metaweather/presentation/style/app_text_styles.dart';
 import 'package:metaweather/presentation/style/color/app_colors.dart';
+import 'package:metaweather/presentation/widgets/settings_app_bar_button.dart';
 
 class ForecastAppBar extends StatelessWidget implements PreferredSizeWidget {
   static const double height = 60;
@@ -19,6 +20,7 @@ class ForecastAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: _buildLeading(context),
+      actions: [_buildSettingsButton(context)],
       brightness: Theme.of(context).brightness,
       backgroundColor: AppColors.background(context),
       titleSpacing: 0,
@@ -47,5 +49,9 @@ class ForecastAppBar extends StatelessWidget implements PreferredSizeWidget {
         color: AppColors.primaryContent(context),
       ),
     );
+  }
+
+  Widget _buildSettingsButton(BuildContext context) {
+    return SettingsAppBarButton();
   }
 }

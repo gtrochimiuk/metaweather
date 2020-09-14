@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:metaweather/data/model/forecast.dart';
+import 'package:metaweather/data/model/weather/forecast.dart';
 import 'package:metaweather/presentation/style/app_margin.dart';
 
 abstract class ForecastList extends StatelessWidget {

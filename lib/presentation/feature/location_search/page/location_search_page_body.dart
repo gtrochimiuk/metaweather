@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:metaweather/data/model/location.dart';
+import 'package:metaweather/data/model/location/location.dart';
 import 'package:metaweather/presentation/feature/location_search/widgets/location_list_item.dart';
 import 'package:metaweather/presentation/style/color/app_colors.dart';
 import 'package:metaweather/presentation/texts/app_texts.dart';

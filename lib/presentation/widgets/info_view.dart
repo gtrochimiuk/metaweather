@@ -25,6 +25,7 @@ class InfoView extends StatelessWidget {
         child: Text(
           information,
           style: AppTextStyles.subtitle(context),
+          textAlign: TextAlign.center,
         ),
       ),
     );

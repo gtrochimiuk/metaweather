@@ -91,7 +91,10 @@ abstract class Injector {
       ),
     );
     _container.registerSingleton(
-      (c) => SettingsBloc(),
+      (c) => SettingsBloc(
+        loadSettings: c.resolve(),
+        saveSettings: c.resolve(),
+      ),
     );
   }
 }

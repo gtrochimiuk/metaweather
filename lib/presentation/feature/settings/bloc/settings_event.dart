@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:metaweather/data/model/settings.dart';
+import 'package:metaweather/data/model/settings/settings.dart';
 
 abstract class SettingsEvent extends Equatable {
   @override

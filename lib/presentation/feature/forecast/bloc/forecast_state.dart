@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:metaweather/common/failure/failure.dart';
-import 'package:metaweather/data/model/forecast.dart';
+import 'package:metaweather/data/model/weather/forecast.dart';
 
 abstract class ForecastState extends Equatable {}
 

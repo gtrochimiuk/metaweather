@@ -17,7 +17,9 @@ abstract class AppTexts {
 
   String temperature(int value);
 
-  String speed(double value);
+  String speedKmh(double value);
+
+  String speedMph(double value);
 
   String attributionInfo();
 
@@ -39,7 +41,35 @@ abstract class AppTexts {
 
   String humidityPercent(int humidity);
 
+  String visibilityKilometers(double visibility);
+
   String visibilityMiles(double visibility);
 
   String forecastCreated(String formattedDate);
+
+  String settings();
+
+  String theme();
+
+  String system();
+
+  String light();
+
+  String dark();
+
+  String temperatureUnit();
+
+  String celsius();
+
+  String fahrenheit();
+
+  String lengthUnit();
+
+  String mile();
+
+  String kilometer();
+
+  String appearance();
+
+  String units();
 }

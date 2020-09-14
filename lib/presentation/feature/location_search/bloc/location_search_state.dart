@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:metaweather/common/failure/failure.dart';
-import 'package:metaweather/data/model/location.dart';
+import 'package:metaweather/data/model/location/location.dart';
 
 abstract class LocationSearchState extends Equatable {
   @override

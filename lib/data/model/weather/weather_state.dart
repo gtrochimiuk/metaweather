@@ -1,8 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:metaweather/common/environment/environment.dart';
 import 'package:metaweather/common/extensions/double_extensions.dart';
-import 'package:metaweather/data/model/temperature.dart';
-import 'package:metaweather/data/model/wind.dart';
+import 'package:metaweather/data/model/settings/length_unit.dart';
+import 'package:metaweather/data/model/weather/temperature.dart';
+import 'package:metaweather/data/model/weather/wind.dart';
 import 'package:metaweather/presentation/texts/app_texts.dart';
 
 class WeatherState extends Equatable {
@@ -30,5 +31,13 @@ class WeatherState extends Equatable {
 
   String formatHumidity() => AppTexts.current.humidityPercent(humidity);
 
-  String formatVisibility() => AppTexts.current.visibilityMiles(visibility.roundAsFixed(1));
+  String formatVisibility(LengthUnit unit) {
+    switch (unit) {
+      case LengthUnit.kilometer:
+        return AppTexts.current.visibilityKilometers(visibility.milesToKilometers().roundAsFixed(1));
+      case LengthUnit.mile:
+        return AppTexts.current.visibilityMiles(visibility.roundAsFixed(1));
+    }
+    throw UnsupportedError('Unit $unit is not supported');
+  }
 }

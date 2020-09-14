@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:metaweather/common/failure/failure.dart';
-import 'package:metaweather/data/model/forecast.dart';
+import 'package:metaweather/data/model/weather/forecast.dart';
 import 'package:metaweather/domain/use_case/load_forecast.dart';
 import 'package:metaweather/presentation/feature/forecast/bloc/forecast_event.dart';
 import 'package:metaweather/presentation/feature/forecast/bloc/forecast_state.dart';

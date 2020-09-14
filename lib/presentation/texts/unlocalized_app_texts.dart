@@ -2,10 +2,10 @@ import 'package:metaweather/presentation/texts/app_texts.dart';
 
 class UnlocalizedAppTexts extends AppTexts {
   @override
-  String noInternetConnection() => 'No Internet connection found';
+  String noInternetConnection() => 'No Internet connection found.';
 
   @override
-  String unexpectedError() => 'An unexpected error occurred';
+  String unexpectedError() => 'An unexpected error occurred.';
 
   @override
   String location() => 'Location';
@@ -14,16 +14,19 @@ class UnlocalizedAppTexts extends AppTexts {
   String findYourLocation() => 'Find your location';
 
   @override
-  String noLocationsFound() => 'Sorry, we didn\'t find the location you are looking for';
+  String noLocationsFound() => 'No locations found';
 
   @override
-  String tapToRetry() => 'Tap to retry';
+  String tapToRetry() => 'Tap to retry.';
 
   @override
   String temperature(int value) => '$value°';
 
   @override
-  String speed(double value) => '$value mph';
+  String speedKmh(double value) => '$value km/h';
+
+  @override
+  String speedMph(double value) => '$value mph';
 
   @override
   String attributionInfo() => 'Weather data provided by MetaWeather.com';
@@ -56,8 +59,50 @@ class UnlocalizedAppTexts extends AppTexts {
   String humidityPercent(int humidity) => '$humidity%';
 
   @override
+  String visibilityKilometers(double visibility) => '$visibility km';
+
+  @override
   String visibilityMiles(double visibility) => '$visibility miles';
 
   @override
   String forecastCreated(String formattedDate) => 'Forecast created $formattedDate';
+
+  @override
+  String settings() => 'Settings';
+
+  @override
+  String theme() => 'Theme';
+
+  @override
+  String system() => 'System';
+
+  @override
+  String light() => 'Light';
+
+  @override
+  String dark() => 'Dark';
+
+  @override
+  String temperatureUnit() => 'Temperature';
+
+  @override
+  String celsius() => 'Celsius';
+
+  @override
+  String fahrenheit() => 'Fahrenheit';
+
+  @override
+  String lengthUnit() => 'Length';
+
+  @override
+  String mile() => 'Mile';
+
+  @override
+  String kilometer() => 'Kilometer';
+
+  @override
+  String appearance() => 'Appearance';
+
+  @override
+  String units() => 'Units';
 }

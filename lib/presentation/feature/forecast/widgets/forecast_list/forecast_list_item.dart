@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:metaweather/common/extensions/date_time_extensions.dart';
-import 'package:metaweather/data/model/forecast.dart';
+import 'package:metaweather/data/model/weather/forecast.dart';
 import 'package:metaweather/presentation/feature/forecast/widgets/temperature_range.dart';
 import 'package:metaweather/presentation/feature/forecast/widgets/weather_image.dart';
 import 'package:metaweather/presentation/style/app_text_styles.dart';

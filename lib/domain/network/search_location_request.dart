@@ -1,5 +1,5 @@
 import 'package:metaweather/common/network/request.dart';
-import 'package:metaweather/data/model/location.dart';
+import 'package:metaweather/data/model/location/location.dart';
 
 class SearchLocationRequest extends Request<List<Location>> {
   SearchLocationRequest(String query)

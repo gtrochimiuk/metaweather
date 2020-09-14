@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:metaweather/data/model/temperature.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:metaweather/common/dependency_injection/injector.dart';
+import 'package:metaweather/data/model/settings/settings.dart';
+import 'package:metaweather/data/model/weather/temperature.dart';
+import 'package:metaweather/presentation/feature/settings/bloc/settings_bloc.dart';
+import 'package:metaweather/presentation/feature/settings/bloc/settings_state.dart';
 import 'package:metaweather/presentation/style/app_text_styles.dart';
 import 'package:metaweather/presentation/style/color/app_colors.dart';
 
@@ -16,18 +21,27 @@ class TemperatureRange extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<SettingsBloc, SettingsState>(
+      cubit: Injector.resolve(),
+      builder: (context, state) {
+        return _buildContent(context, state.settings);
+      },
+    );
+  }
+
+  Widget _buildContent(BuildContext context, Settings settings) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: mainAxisAlignment,
       children: [
         _buildTemperatureWithIcon(
           context,
-          formattedTemperature: temperature.formatMin(),
+          formattedTemperature: temperature.formatMin(settings.temperatureUnit),
           icon: Icons.arrow_downward,
         ),
         _buildTemperatureWithIcon(
           context,
-          formattedTemperature: temperature.formatMax(),
+          formattedTemperature: temperature.formatMax(settings.temperatureUnit),
           icon: Icons.arrow_upward,
         ),
       ],

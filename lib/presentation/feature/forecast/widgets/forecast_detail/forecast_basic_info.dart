@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:metaweather/data/model/forecast.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:metaweather/common/dependency_injection/injector.dart';
+import 'package:metaweather/data/model/weather/forecast.dart';
 import 'package:metaweather/presentation/feature/forecast/widgets/temperature_range.dart';
 import 'package:metaweather/presentation/feature/forecast/widgets/weather_image.dart';
+import 'package:metaweather/presentation/feature/settings/bloc/settings_bloc.dart';
+import 'package:metaweather/presentation/feature/settings/bloc/settings_state.dart';
 import 'package:metaweather/presentation/style/app_margin.dart';
 import 'package:metaweather/presentation/style/app_text_styles.dart';
 
@@ -54,9 +58,14 @@ class ForecastBasicInfo extends StatelessWidget {
   }
 
   Widget _buildCurrentTemperature(BuildContext context) {
-    return Text(
-      forecast.weatherState.temperature.formatCurrent(),
-      style: AppTextStyles.mainInfo(context),
+    return BlocBuilder<SettingsBloc, SettingsState>(
+      cubit: Injector.resolve(),
+      builder: (context, state) {
+        return Text(
+          forecast.weatherState.temperature.formatCurrent(state.settings.temperatureUnit),
+          style: AppTextStyles.mainInfo(context),
+        );
+      },
     );
   }
 
