@@ -11,8 +11,8 @@ import 'package:metaweather/presentation/feature/location_search/bloc/location_s
 import 'package:metaweather/presentation/feature/location_search/page/location_search_page_body.dart';
 import 'package:metaweather/presentation/feature/location_search/widgets/location_search_app_bar.dart';
 import 'package:metaweather/presentation/texts/app_texts.dart';
-import 'package:metaweather/presentation/widgets/info_view.dart';
 import 'package:metaweather/presentation/widgets/error_view.dart';
+import 'package:metaweather/presentation/widgets/info_view.dart';
 import 'package:metaweather/presentation/widgets/loading_indicator.dart';
 
 class LocationSearchPage extends StatefulWidget {
@@ -22,7 +22,7 @@ class LocationSearchPage extends StatefulWidget {
 
 class _LocationSearchPageState extends State<LocationSearchPage> {
   final LocationSearchBloc locationSearchBloc = Injector.resolve();
-  final Debouncer queryDebouncer = Debouncer(duration: const Duration(milliseconds: 300));
+  final Debouncer queryDebouncer = Debouncer(duration: const Duration(milliseconds: 200));
   String lastQuery;
 
   void _onQueryChanged(String query) {
@@ -30,6 +30,10 @@ class _LocationSearchPageState extends State<LocationSearchPage> {
       lastQuery = query;
       locationSearchBloc.add(PerformLocationSearchEvent(query: query));
     });
+  }
+
+  void _onQueryCleared() {
+    locationSearchBloc.add(PerformLocationSearchEvent(query: ''));
   }
 
   void _retrySearch() {
@@ -57,6 +61,7 @@ class _LocationSearchPageState extends State<LocationSearchPage> {
     return LocationSearchAppBar(
       onSearchQueryChanged: _onQueryChanged,
       onSearchQuerySubmitted: _onQueryChanged,
+      onSearchQueryCleared: _onQueryCleared,
     );
   }
 

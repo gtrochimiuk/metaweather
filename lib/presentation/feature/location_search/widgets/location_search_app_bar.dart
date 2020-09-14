@@ -7,11 +7,13 @@ class LocationSearchAppBar extends StatelessWidget implements PreferredSizeWidge
   static const double height = 60;
   final void Function(String) onSearchQueryChanged;
   final void Function(String) onSearchQuerySubmitted;
+  final void Function() onSearchQueryCleared;
 
   const LocationSearchAppBar({
     Key key,
     this.onSearchQueryChanged,
     this.onSearchQuerySubmitted,
+    this.onSearchQueryCleared,
   }) : super(key: key);
 
   @override
@@ -33,6 +35,7 @@ class LocationSearchAppBar extends StatelessWidget implements PreferredSizeWidge
       margin: const EdgeInsets.symmetric(horizontal: AppMargin.horizontal, vertical: 10),
       onChanged: onSearchQueryChanged,
       onSubmitted: onSearchQuerySubmitted,
+      onCleared: onSearchQueryCleared,
     );
   }
 }

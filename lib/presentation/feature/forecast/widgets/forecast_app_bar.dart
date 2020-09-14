@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:metaweather/presentation/style/app_margin.dart';
 import 'package:metaweather/presentation/style/app_text_styles.dart';
 import 'package:metaweather/presentation/style/color/app_colors.dart';
 
@@ -28,11 +27,14 @@ class ForecastAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   Widget _buildTitle(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: AppMargin.horizontal),
-      child: Text(
-        title,
-        style: AppTextStyles.headline(context),
+    return InkWell(
+      onTap: () => Navigator.of(context).pop(),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        child: Text(
+          title,
+          style: AppTextStyles.headline(context),
+        ),
       ),
     );
   }

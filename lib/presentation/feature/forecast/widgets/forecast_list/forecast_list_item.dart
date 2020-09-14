@@ -14,6 +14,8 @@ abstract class ForecastListItem extends StatelessWidget {
 
   double get weatherImageHeight;
 
+  BorderRadius get borderRadius => BorderRadius.circular(5);
+
   const ForecastListItem({
     Key key,
     @required this.forecast,
@@ -38,6 +40,7 @@ abstract class ForecastListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => _onSelected(context),
+      borderRadius: borderRadius,
       child: Material(
         child: Container(
           width: size,
@@ -51,15 +54,14 @@ abstract class ForecastListItem extends StatelessWidget {
 
   BoxDecoration _buildDecoration(BuildContext context) {
     return BoxDecoration(
-      color: AppColors.background(context),
-      border:
-          Border.all(color: isSelected ? AppColors.secondaryContent(context) : AppColors.secondaryBackground(context)),
-      borderRadius: BorderRadius.circular(5),
+      border: Border.all(
+        color: isSelected ? AppColors.secondaryContent(context) : AppColors.secondaryBackground(context),
+      ),
+      borderRadius: borderRadius,
     );
   }
 
-  Widget buildContent(BuildContext context); 
-  
+  Widget buildContent(BuildContext context);
 
   Widget buildDateLabel(BuildContext context) {
     return Text(
