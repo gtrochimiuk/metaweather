@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:metaweather/common/utils/device.dart';
 
-abstract class PageBody extends StatelessWidget {
-  const PageBody({Key key}) : super(key: key);
+abstract class OrientationBasedPageBody extends StatelessWidget {
+  const OrientationBasedPageBody({Key key}) : super(key: key);
 
   Widget build(BuildContext context) {
     if (Device.isLandscape(context)) {

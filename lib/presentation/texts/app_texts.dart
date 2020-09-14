@@ -25,6 +25,8 @@ abstract class AppTexts {
 
   String tomorrow();
 
+  String yesterday();
+
   String humidity();
 
   String airPressure();
@@ -38,4 +40,6 @@ abstract class AppTexts {
   String humidityPercent(int humidity);
 
   String visibilityMiles(double visibility);
+
+  String forecastCreated(String formattedDate);
 }

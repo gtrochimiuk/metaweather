@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:metaweather/data/model/forecast.dart';
@@ -6,8 +8,9 @@ abstract class ForecastEvent extends Equatable {}
 
 class LoadForecastEvent extends ForecastEvent {
   final int locationId;
+  final Completer completer;
 
-  LoadForecastEvent({@required this.locationId}) : assert(locationId != null);
+  LoadForecastEvent({@required this.locationId, this.completer}) : assert(locationId != null);
 
   @override
   List<Object> get props => [locationId];

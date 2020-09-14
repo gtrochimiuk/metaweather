@@ -35,9 +35,11 @@ class ForecastBloc extends Bloc<ForecastEvent, ForecastState> {
           forecasts: forecasts,
           selectedForecast: forecasts.first,
         );
+        event.completer?.complete();
       },
       onFailure: (Failure failure) async* {
         yield FailureForecastState(failure: failure);
+        event.completer?.complete();
       },
     );
   }

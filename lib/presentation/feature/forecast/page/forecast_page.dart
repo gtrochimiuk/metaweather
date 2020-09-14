@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:metaweather/common/dependency_injection/injector.dart';
@@ -36,8 +38,11 @@ class _ForecastPageState extends State<ForecastPage> {
     _loadForecast();
   }
 
-  void _loadForecast() {
-    forecastBloc.add(LoadForecastEvent(locationId: widget.location.id));
+  void _loadForecast({Completer<void> completer}) {
+    forecastBloc.add(LoadForecastEvent(
+      locationId: widget.location.id,
+      completer: completer,
+    ));
   }
 
   void _selectForecast(Forecast forecast) {
@@ -83,6 +88,7 @@ class _ForecastPageState extends State<ForecastPage> {
       forecasts: state.forecasts,
       selectedForecast: state.selectedForecast,
       onForecastSelected: _selectForecast,
+      refreshForecast: _loadForecast,
     );
   }
 

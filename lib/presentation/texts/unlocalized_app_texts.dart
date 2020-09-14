@@ -35,6 +35,9 @@ class UnlocalizedAppTexts extends AppTexts {
   String tomorrow() => 'Tomorrow';
 
   @override
+  String yesterday() => 'Yesterday';
+
+  @override
   String humidity() => 'Humidity';
 
   @override
@@ -54,4 +57,7 @@ class UnlocalizedAppTexts extends AppTexts {
 
   @override
   String visibilityMiles(double visibility) => '$visibility miles';
+
+  @override
+  String forecastCreated(String formattedDate) => 'Forecast created $formattedDate';
 }
