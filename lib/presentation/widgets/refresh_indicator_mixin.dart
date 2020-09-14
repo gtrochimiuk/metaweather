@@ -1,5 +1,6 @@
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:metaweather/common/utils/device.dart';
 import 'package:metaweather/presentation/style/app_margin.dart';
 import 'package:metaweather/presentation/style/app_text_styles.dart';
 import 'package:metaweather/presentation/widgets/loading_indicator.dart';
@@ -32,7 +33,7 @@ mixin RefreshIndicatorMixin {
     double width,
   ) {
     return Positioned(
-      top: 50 * controller.value - 20,
+      top: 50 * controller.value - Device.pullToRefreshOffset,
       width: width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +50,7 @@ mixin RefreshIndicatorMixin {
     Widget child,
   ) {
     return Transform.translate(
-      offset: Offset(0, 30 * controller.value),
+      offset: Offset(0, 50 * controller.value),
       child: child,
     );
   }
@@ -66,10 +67,10 @@ mixin RefreshIndicatorMixin {
 
   Widget _buildProgressIndicator(IndicatorController controller) {
     return SizedBox(
-      width: 20,
-      height: 20,
+      width: Device.pullToRefreshOffset,
+      height: Device.pullToRefreshOffset,
       child: LoadingIndicator(
-        value: controller.value.clamp(0.0, 1.0),
+        value: controller.isDragging ? controller.value.clamp(0.0, 1.0) : null,
         strokeWidth: 3,
       ),
     );

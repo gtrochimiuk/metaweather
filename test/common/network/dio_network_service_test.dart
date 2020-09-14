@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:metaweather/common/failure/failure.dart';
+import 'package:metaweather/common/network/connectivity_service.dart';
 import 'package:metaweather/common/network/dio_network_service.dart';
 import 'package:metaweather/common/network/http_method.dart';
 import 'package:metaweather/common/network/request.dart';
@@ -11,11 +12,14 @@ import 'package:mockito/mockito.dart';
 
 class DioMock extends Mock implements Dio {}
 
+class ConnectivityServiceMock extends Mock implements ConnectivityService {}
+
 class RequestMock extends Mock implements Request<String> {}
 
 class ResponseMock extends Mock implements Response {}
 
 Dio dioMock;
+ConnectivityService connectivityServiceMock;
 RequestMock request;
 ResponseMock response;
 
@@ -24,10 +28,15 @@ DioNetworkService networkService;
 void main() {
   setUp(() {
     dioMock = DioMock();
+    connectivityServiceMock = ConnectivityServiceMock();
     request = RequestMock();
     response = ResponseMock();
-    networkService = DioNetworkService(dio: dioMock);
+    networkService = DioNetworkService(
+      dio: dioMock,
+      connectivityService: connectivityServiceMock,
+    );
 
+    when(connectivityServiceMock.hasConnection).thenAnswer((_) async => true);
     when(request.createResponse(any)).thenAnswer((_) => _TestData.parsedResponse);
     when(request.method).thenReturn(HttpMethod.get);
   });

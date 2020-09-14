@@ -7,14 +7,12 @@ import 'package:metaweather/presentation/texts/app_texts.dart';
 class SearchBar extends StatefulWidget implements PreferredSizeWidget {
   static const double height = 35;
 
-  final void Function(String) onSubmitted;
   final void Function(String) onChanged;
   final void Function() onCleared;
   final EdgeInsets margin;
 
   const SearchBar({
     Key key,
-    this.onSubmitted,
     this.onChanged,
     this.onCleared,
     this.margin,
@@ -30,6 +28,13 @@ class SearchBar extends StatefulWidget implements PreferredSizeWidget {
 class _SearchBarState extends State<SearchBar> {
   final TextEditingController controller = TextEditingController();
 
+  void _onChanged(String value) {
+    widget.onChanged(value);
+    setState(() {
+      // Set state to rebuild text field decoration
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,8 +43,7 @@ class _SearchBarState extends State<SearchBar> {
       child: TextField(
         controller: controller,
         style: AppTextStyles.body(context),
-        onSubmitted: widget.onSubmitted,
-        onChanged: widget.onChanged,
+        onChanged: _onChanged,
         decoration: _buildDecoration(context),
         autocorrect: false,
       ),
@@ -58,7 +62,7 @@ class _SearchBarState extends State<SearchBar> {
       filled: true,
       contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: AppMargin.horizontal),
       prefixIcon: _buildPrefixIcon(context),
-      suffixIcon: _buildSuffixIcon(context),
+      suffixIcon: controller.value.text.isNotEmpty ? _buildSuffixIcon(context) : null,
       hintText: AppTexts.current.location(),
       hintStyle: AppTextStyles.subtitle(context),
     );
@@ -77,6 +81,7 @@ class _SearchBarState extends State<SearchBar> {
       icon: Icon(
         Icons.clear,
         color: AppColors.primaryContent(context),
+        size: 18,
       ),
       onPressed: () {
         controller.clear();

@@ -23,6 +23,7 @@ dependencies:
   url_launcher: ^5.5.3
   intl: ^0.16.1
   custom_refresh_indicator: ^0.8.0+1
+  data_connection_checker: ^0.3.4
 
 dev_dependencies:
   flutter_test:

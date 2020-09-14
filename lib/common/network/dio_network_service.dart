@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:metaweather/common/failure/failure.dart';
+import 'package:metaweather/common/network/connectivity_service.dart';
 import 'package:metaweather/common/network/http_method.dart';
 import 'package:metaweather/common/network/network_service.dart';
 import 'package:metaweather/common/network/request.dart';
@@ -10,12 +11,21 @@ import 'package:metaweather/common/result/success_result.dart';
 
 class DioNetworkService extends NetworkService {
   final Dio dio;
+  final ConnectivityService connectivityService;
 
-  DioNetworkService({@required this.dio}) : assert(dio != null);
+  DioNetworkService({
+    @required this.dio,
+    @required this.connectivityService,
+  })  : assert(dio != null),
+        assert(connectivityService != null);
 
   @override
   Future<Result<T, Failure>> make<T>(Request<T> request) async {
     try {
+      final hasConnection = await connectivityService.hasConnection;
+      if (!hasConnection) {
+        return FailureResult(ConnectionFailure());
+      }
       final response = await dio.request(
         request.path,
         data: request.body?.toJson(),

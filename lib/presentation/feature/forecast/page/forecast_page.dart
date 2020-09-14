@@ -11,7 +11,7 @@ import 'package:metaweather/presentation/feature/forecast/bloc/forecast_event.da
 import 'package:metaweather/presentation/feature/forecast/bloc/forecast_state.dart';
 import 'package:metaweather/presentation/feature/forecast/page/forecast_page_body.dart';
 import 'package:metaweather/presentation/feature/forecast/widgets/forecast_app_bar.dart';
-import 'package:metaweather/presentation/widgets/error_view.dart';
+import 'package:metaweather/presentation/widgets/info_view.dart';
 import 'package:metaweather/presentation/widgets/loading_indicator.dart';
 
 class ForecastPage extends StatefulWidget {
@@ -38,10 +38,14 @@ class _ForecastPageState extends State<ForecastPage> {
     _loadForecast();
   }
 
-  void _loadForecast({Completer<void> completer}) {
+  void _loadForecast({
+    Completer<void> completer,
+    bool showLoadingIndicator = true,
+  }) {
     forecastBloc.add(LoadForecastEvent(
       locationId: widget.location.id,
       completer: completer,
+      showLoadingIndicator: showLoadingIndicator,
     ));
   }
 
@@ -53,9 +57,7 @@ class _ForecastPageState extends State<ForecastPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: SafeArea(
-        child: _buildContent(),
-      ),
+      body: _buildContent(),
     );
   }
 
@@ -93,8 +95,8 @@ class _ForecastPageState extends State<ForecastPage> {
   }
 
   Widget _buildErrorView(Failure failure) {
-    return ErrorView(
-      message: failure.getMessage(),
+    return InfoView(
+      information: failure.getMessage(),
       onRetry: _loadForecast,
     );
   }

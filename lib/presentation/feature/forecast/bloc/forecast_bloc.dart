@@ -27,7 +27,9 @@ class ForecastBloc extends Bloc<ForecastEvent, ForecastState> {
   }
 
   Stream<ForecastState> _mapLoadForecast(LoadForecastEvent event) async* {
-    yield LoadingForecastState();
+    if (event.showLoadingIndicator) {
+      yield LoadingForecastState();
+    }
     final result = await loadForecast(event.locationId);
     yield* result.fold(
       onSuccess: (List<Forecast> forecasts) async* {

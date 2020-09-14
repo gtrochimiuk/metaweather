@@ -18,14 +18,12 @@ class ForecastDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        margin: const EdgeInsets.symmetric(
-          horizontal: AppMargin.horizontal,
-          vertical: AppMargin.vertical,
-        ),
-        child: _buildContent(context),
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        horizontal: AppMargin.horizontal,
+        vertical: AppMargin.vertical,
       ),
+      child: _buildContent(context),
     );
   }
 

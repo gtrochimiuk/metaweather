@@ -27,6 +27,7 @@ class LocationSearchBloc extends Bloc<LocationSearchEvent, LocationSearchState> 
   }
 
   Stream<LocationSearchState> _mapPerformLocationSearch(PerformLocationSearchEvent event) async* {
+    yield LoadingLocationSearchState();
     if (event.query.isNotEmpty) {
       final result = await searchLocation(event.query);
       yield* result.fold(

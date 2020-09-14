@@ -1,7 +1,7 @@
 import 'package:metaweather/data/model/settings/settings_option.dart';
 import 'package:metaweather/presentation/texts/app_texts.dart';
 
-enum LengthUnit { mile, kilometer }
+enum LengthUnit { kilometer, mile }
 
 extension LengthUnitExtensions on LengthUnit {
   String getName() {
@@ -14,10 +14,12 @@ extension LengthUnitExtensions on LengthUnit {
     throw UnsupportedError('Unit $this is not supported');
   }
 
-  static List<SettingsOption<LengthUnit>> getSettingsOptions() => LengthUnit.values.map(
+  static List<SettingsOption<LengthUnit>> getSettingsOptions() => LengthUnit.values
+      .map(
         (value) => SettingsOption(
           name: value.getName(),
           value: value,
         ),
-      ).toList();
+      )
+      .toList();
 }

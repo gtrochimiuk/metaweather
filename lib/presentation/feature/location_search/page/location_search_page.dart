@@ -11,7 +11,6 @@ import 'package:metaweather/presentation/feature/location_search/bloc/location_s
 import 'package:metaweather/presentation/feature/location_search/page/location_search_page_body.dart';
 import 'package:metaweather/presentation/feature/location_search/widgets/location_search_app_bar.dart';
 import 'package:metaweather/presentation/texts/app_texts.dart';
-import 'package:metaweather/presentation/widgets/error_view.dart';
 import 'package:metaweather/presentation/widgets/info_view.dart';
 import 'package:metaweather/presentation/widgets/loading_indicator.dart';
 
@@ -60,7 +59,6 @@ class _LocationSearchPageState extends State<LocationSearchPage> {
   Widget _buildAppBar() {
     return LocationSearchAppBar(
       onSearchQueryChanged: _onQueryChanged,
-      onSearchQuerySubmitted: _onQueryChanged,
       onSearchQueryCleared: _onQueryCleared,
     );
   }
@@ -100,8 +98,8 @@ class _LocationSearchPageState extends State<LocationSearchPage> {
   }
 
   Widget _buildErrorView(Failure failure) {
-    return ErrorView(
-      message: failure.getMessage(),
+    return InfoView(
+      information: failure.getMessage(),
       onRetry: _retrySearch,
     );
   }

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:metaweather/common/environment/environment.dart';
+import 'package:metaweather/common/network/connectivity_service.dart';
 import 'package:metaweather/common/network/dio_network_service.dart';
 import 'package:metaweather/common/network/network_service.dart';
 import 'package:metaweather/data/repository/forecast_repository.dart';
@@ -71,7 +72,11 @@ abstract class Injector {
     _container.registerSingleton<NetworkService>(
       (c) => DioNetworkService(
         dio: c.resolve(),
+        connectivityService: c.resolve(),
       ),
+    );
+    _container.registerSingleton<ConnectivityService>(
+      (c) => ConnectivityService(),
     );
 
     // Texts

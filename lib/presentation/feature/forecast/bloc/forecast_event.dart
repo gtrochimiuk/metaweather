@@ -9,11 +9,16 @@ abstract class ForecastEvent extends Equatable {}
 class LoadForecastEvent extends ForecastEvent {
   final int locationId;
   final Completer completer;
+  final bool showLoadingIndicator;
 
-  LoadForecastEvent({@required this.locationId, this.completer}) : assert(locationId != null);
+  LoadForecastEvent({
+    @required this.locationId,
+    this.completer,
+    this.showLoadingIndicator = true,
+  }) : assert(locationId != null);
 
   @override
-  List<Object> get props => [locationId];
+  List<Object> get props => [locationId, completer, showLoadingIndicator];
 }
 
 class SelectForecastEvent extends ForecastEvent {
