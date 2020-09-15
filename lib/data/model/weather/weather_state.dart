@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:metaweather/common/environment/environment.dart';
 import 'package:metaweather/common/extensions/double_extensions.dart';
 import 'package:metaweather/data/model/settings/length_unit.dart';
@@ -14,6 +15,22 @@ class WeatherState extends Equatable {
   final double airPressure;
   final int humidity;
   final double visibility;
+
+  const WeatherState({
+    @required this.name,
+    @required this.imageUrl,
+    @required this.temperature,
+    @required this.wind,
+    @required this.airPressure,
+    @required this.humidity,
+    @required this.visibility,
+  })  : assert(name != null),
+        assert(imageUrl != null),
+        assert(temperature != null),
+        assert(wind != null),
+        assert(airPressure != null),
+        assert(humidity != null),
+        assert(visibility != null);
 
   WeatherState.fromJson(Map<String, dynamic> json)
       : name = json['weather_state_name'],

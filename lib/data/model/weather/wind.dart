@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:metaweather/common/extensions/double_extensions.dart';
 import 'package:metaweather/data/model/settings/length_unit.dart';
 import 'package:metaweather/presentation/texts/app_texts.dart';
@@ -6,6 +7,12 @@ import 'package:metaweather/presentation/texts/app_texts.dart';
 class Wind extends Equatable {
   final double speed;
   final double direction;
+
+  const Wind({
+    @required this.speed,
+    @required this.direction,
+  })  : assert(speed != null),
+        assert(direction != null);
 
   Wind.fromJson(Map<String, dynamic> json)
       : speed = json['wind_speed'],

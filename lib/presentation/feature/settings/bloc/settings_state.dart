@@ -23,8 +23,15 @@ class LoadedSettingsState extends SettingsState {
 class FailureSettingsState extends SettingsState {
   final Failure failure;
 
+  const FailureSettingsState({
+    @required this.failure,
+    @required Settings settings,
+  })  : assert(failure != null),
+        super(settings: settings);
+
   FailureSettingsState.fromState({
     @required this.failure,
     @required SettingsState state,
-  }) : super(settings: state.settings);
+  })  : assert(failure != null),
+        super(settings: state.settings);
 }
