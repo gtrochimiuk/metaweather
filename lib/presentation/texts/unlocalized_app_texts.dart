@@ -105,4 +105,7 @@ class UnlocalizedAppTexts extends AppTexts {
 
   @override
   String units() => 'Units';
+
+  @override
+  String previousLocations() => 'Previously selected';
 }

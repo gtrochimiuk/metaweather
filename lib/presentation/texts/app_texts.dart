@@ -72,4 +72,6 @@ abstract class AppTexts {
   String appearance();
 
   String units();
+
+  String previousLocations();
 }

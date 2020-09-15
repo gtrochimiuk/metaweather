@@ -42,7 +42,14 @@ class _LocationSearchPageState extends State<LocationSearchPage> {
   }
 
   void _onLocationSelected(Location location) {
+    locationSearchBloc.add(SavePreviousLocationEvent(location: location));
     Navigator.of(context).push(ForecastPage.pageRoute(location));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    locationSearchBloc.add(LoadPreviousLocationsEvent());
   }
 
   @override
@@ -70,6 +77,9 @@ class _LocationSearchPageState extends State<LocationSearchPage> {
           if (state is LoadedLocationSearchState) {
             return _buildLoadedPageBody(state);
           } else if (state is UninitializedLocationSearchState) {
+            if (state.previouslySelectedLocations.isNotEmpty) {
+              return _buildPreviousLocationsPageBody(state);
+            }
             return _buildInfoView();
           } else if (state is LoadingLocationSearchState) {
             return _buildLoadingIndicator();
@@ -89,6 +99,14 @@ class _LocationSearchPageState extends State<LocationSearchPage> {
   Widget _buildLoadedPageBody(LoadedLocationSearchState state) {
     return LocationSearchPageBody(
       locations: state.locations,
+      onLocationSelected: _onLocationSelected,
+    );
+  }
+
+  Widget _buildPreviousLocationsPageBody(LocationSearchState state) {
+    return LocationSearchPageBody(
+      subtitle: AppTexts.current.previousLocations(),
+      locations: state.previouslySelectedLocations,
       onLocationSelected: _onLocationSelected,
     );
   }

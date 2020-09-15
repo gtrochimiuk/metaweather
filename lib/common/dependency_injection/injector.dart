@@ -11,7 +11,9 @@ import 'package:metaweather/data/repository/impl/settings_repository_impl.dart';
 import 'package:metaweather/data/repository/location_repository.dart';
 import 'package:metaweather/data/repository/settings_repository.dart';
 import 'package:metaweather/domain/use_case/load_forecast.dart';
+import 'package:metaweather/domain/use_case/load_previous_locations.dart';
 import 'package:metaweather/domain/use_case/load_settings.dart';
+import 'package:metaweather/domain/use_case/save_previous_location.dart';
 import 'package:metaweather/domain/use_case/save_settings.dart';
 import 'package:metaweather/domain/use_case/search_location.dart';
 import 'package:metaweather/presentation/feature/forecast/bloc/forecast_bloc.dart';
@@ -45,6 +47,16 @@ abstract class Injector {
     _container.registerSingleton(
       (c) => SaveSettings(
         settingsRepository: c.resolve(),
+      ),
+    );
+    _container.registerSingleton(
+      (c) => LoadPreviousLocations(
+        locationRepository: c.resolve(),
+      ),
+    );
+    _container.registerSingleton(
+      (c) => SavePreviousLocation(
+        locationRepository: c.resolve(),
       ),
     );
 
@@ -88,6 +100,8 @@ abstract class Injector {
     _container.registerFactory(
       (c) => LocationSearchBloc(
         searchLocation: c.resolve(),
+        loadPreviousLocations: c.resolve(),
+        savePreviousLocation: c.resolve(),
       ),
     );
     _container.registerFactory(
