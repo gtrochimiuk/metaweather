@@ -148,12 +148,12 @@ void main() {
       ),
     ],
     verify: (_) {
-      verify(savePreviousLocationMock.call(_TestData.locations[0])).called(1);
+      verify(savePreviousLocationMock.call(any)).called(1);
     },
   );
 
   blocTest(
-    'Should save previous location and  emit uninitialized state',
+    'Should save previous location and emit uninitialized state',
     build: () {
       _givenSavePreviousLocationFailure();
       return locationSearchBloc;
@@ -167,7 +167,7 @@ void main() {
       )
     ],
     verify: (_) {
-      verify(savePreviousLocationMock.call(_TestData.locations[0])).called(1);
+      verify(savePreviousLocationMock.call(any)).called(1);
     },
   );
 }
@@ -197,13 +197,13 @@ void _givenLoadPreviousLocationsFailure() {
 }
 
 void _givenSavePreviousLocationSuccess() {
-  when(savePreviousLocationMock.call(_TestData.locations[0])).thenAnswer(
+  when(savePreviousLocationMock.call(any)).thenAnswer(
     (_) async => SuccessResult<List<Location>, Failure>(_TestData.previouslySelectedLocations),
   );
 }
 
 void _givenSavePreviousLocationFailure() {
-  when(savePreviousLocationMock.call(_TestData.locations[0])).thenAnswer(
+  when(savePreviousLocationMock.call(any)).thenAnswer(
     (_) async => FailureResult<List<Location>, Failure>(_TestData.failure),
   );
 }
